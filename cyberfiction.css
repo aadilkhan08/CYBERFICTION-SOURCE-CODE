@@ -1,0 +1,195 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-family: "Nunito", sans-serif;
+}
+#main {
+  position: relative;
+  overflow: hidden;
+}
+
+#page4 {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+}
+canvas {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  z-index: 10;
+}
+#loop {
+  display: flex;
+  position: absolute;
+  top: 30%;
+  height: 30%;
+  width: 100%;
+  background-color: black;
+  font-size: 80px;
+  white-space: nowrap;
+  font-weight: normal;
+  color: white;
+}
+#loop h1 {
+  font-weight: 300;
+  animation: anime 25s linear infinite;
+}
+#loop > h1 > span {
+  color: transparent;
+  -webkit-text-stroke: 1.5px white;
+  font-weight: 700;
+}
+@keyframes anime {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* navbar */
+
+#nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  height: 7%;
+  width: 100%;
+  z-index: 5;
+  position: fixed;
+  color: white;
+}
+#nav > h5 {
+  font-weight: 300;
+  font-size: 20px;
+}
+#nav > button {
+  margin: 5px 0px 0px;
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: 10px;
+  background-color: white;
+  color: black;
+  border: none;
+}
+
+/* page1 */
+#page1 {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+}
+#page1 > h5 {
+  position: absolute;
+  top: 60%;
+  font-weight: 300;
+  color: rgb(185, 185, 185);
+  left: 4%;
+  font-size: 0.65rem;
+}
+#page1 > h6 {
+  position: absolute;
+  top: 67%;
+  left: 25%;
+}
+
+/* page2 */
+#page2 {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+}
+#page2 > #right-text {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+}
+#page2 > #right-text > h1 {
+  list-style: 1.5;
+  font-size: 35px;
+}
+#page2 > #right-text > h3 {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgb(185, 185, 185);
+}
+#page2 > #left-text {
+  position: absolute;
+  top: 40%;
+  right: 10%;
+  text-align: end;
+}
+#page2 > #left-text > h1 {
+  list-style: 1.5;
+  font-size: 35px;
+}
+#page2 > #left-text > h3 {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgb(185, 185, 185);
+}
+
+/* page 3 */
+
+#page3 {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+}
+#page3 > #text1 {
+  position: absolute;
+  top: 30%;
+  left: 10%;
+}
+#page3 > #text1 > h1 {
+  list-style: 1.5;
+  font-size: 40px;
+}
+#page3 > #text1 > h3 {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgb(185, 185, 185);
+}
+#page3 > #text2 {
+  position: absolute;
+  top: 55%;
+  right: 5%;
+}
+#page3 > #text2 > p {
+  font-size: 10px;
+  font-weight: 300;
+  color: rgb(185, 185, 185);
+  text-align: end;
+}
+
+/* page4 */
+
+#page4 > #text3 {
+  position: absolute;
+  top: 40%;
+  right: 5%;
+  text-align: end;
+}
+#page4 > #text3 > h1 {
+  list-style: 1.5;
+  font-size: 55px;
+}
+#page4 > #text3 > h3 {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgb(185, 185, 185);
+}

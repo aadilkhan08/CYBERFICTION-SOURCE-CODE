@@ -3,7 +3,7 @@ function locomotive() {
 
   const locoScroll = new LocomotiveScroll({
     el: document.querySelector("#main"),
-    smooth: true ,
+    smooth: true,
   });
   locoScroll.on("scroll", ScrollTrigger.update);
 
@@ -13,7 +13,6 @@ function locomotive() {
         ? locoScroll.scrollTo(value, 0, 0)
         : locoScroll.scroll.instance.scroll.y;
     },
-
     getBoundingClientRect() {
       return {
         top: 0,
@@ -22,32 +21,32 @@ function locomotive() {
         height: window.innerHeight,
       };
     },
-
     pinType: document.querySelector("#main").style.transform
       ? "transform"
       : "fixed",
   });
+
   ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
+
   ScrollTrigger.refresh();
 }
 locomotive();
 
+function canvas() {
+  const canvas = document.querySelector("canvas");
+  const context = canvas.getContext("2d");
 
-const canvas = document.querySelector("canvas");
-const context = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-
-window.addEventListener("resize", function () {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  render();
-});
 
-function files(index) {
-  var data = `
+  window.addEventListener("resize", function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    render();
+  });
+
+  function files(index) {
+    var imgdata = `
      ./male0001.png
      ./male0002.png
      ./male0003.png
@@ -349,97 +348,97 @@ function files(index) {
      ./male0299.png
      ./male0300.png
  `;
-  return data.split("\n")[index];
-}
+    return imgdata.split("\n")[index];
+  }
 
-const frameCount = 300;
+  const frameCount = 300;
 
-const images = [];
-const imageSeq = {
-  frame: 1,
-};
+  const images = [];
+  const imageSeq = {
+    frame: 1,
+  };
 
-for (let i = 0; i < frameCount; i++) {
-  const img = new Image();
-  img.src = files(i);
-  images.push(img);
-}
+  for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = files(i);
+    images.push(img);
+  }
 
-gsap.to(imageSeq, {
-  frame: frameCount - 1,
-  snap: "frame",
-  ease: `none`,
-  scrollTrigger: {
-    scrub: 0.15,
-    trigger: `#page>canvas`,
+  gsap.to(imageSeq, {
+    frame: frameCount - 1,
+    snap: "frame",
+    ease: `none`,
+    scrollTrigger: {
+      scrub: 0.15,
+      trigger: `#page1>canvas`,
+      start: `top top`,
+      end: `600% top`,
+      scroller: `#main`,
+    },
+    onUpdate: render,
+  });
+
+  images[1].onload = render;
+
+  function render() {
+    scaleImage(images[imageSeq.frame], context);
+  }
+
+  function scaleImage(img, ctx) {
+    const canvas = ctx.canvas;
+    const horiRatio = canvas.width / img.width;
+    const verRatio = canvas.height / img.height;
+    const ratio = Math.max(horiRatio, verRatio);
+    const centerShift_x = (canvas.width - img.width * ratio) / 2;
+    const centerShift_y = (canvas.height - img.height * ratio) / 2;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(
+      img,
+      0,
+      0,
+      img.width,
+      img.height,
+      centerShift_x,
+      centerShift_y,
+      img.width * ratio,
+      img.height * ratio
+    );
+  }
+  ScrollTrigger.create({
+    trigger: "#page1>canvas",
+    pin: true,
+    // markers: true,
+    scroller: `#main`,
     start: `top top`,
     end: `600% top`,
-    scroller: `#main`,
-  },
-  onUpdate: render,
-});
+  });
 
-images[1].onload = render;
-
-function render() {
-  scaleImage(images[imageSeq.frame], context);
+  gsap.to("#page2", {
+    scrollTrigger: {
+      trigger: `#page2`,
+      start: `top top`,
+      end: `bottom top`,
+      pin: true,
+      scroller: `#main`,
+    },
+  });
+  gsap.to("#page3", {
+    scrollTrigger: {
+      trigger: `#page3`,
+      start: `top top`,
+      end: `bottom top`,
+      pin: true,
+      scroller: `#main`,
+    },
+  });
+  gsap.to("#page4", {
+    scrollTrigger: {
+      trigger: `#page4`,
+      start: `top top`,
+      end: `bottom top`,
+      pin: true,
+      scroller: `#main`,
+    },
+  });
 }
-
-function scaleImage(img, ctx) {
-  var canvas = ctx.canvas;
-  var hRatio = canvas.width / img.width;
-  var vRatio = canvas.height / img.height;
-  var ratio = Math.max(hRatio, vRatio);
-  var centerShift_x = (canvas.width - img.width * ratio) / 2;
-  var centerShift_y = (canvas.height - img.height * ratio) / 2;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(
-    img,
-    0,
-    0,
-    img.width,
-    img.height,
-    centerShift_x,
-    centerShift_y,
-    img.width * ratio,
-    img.height * ratio
-  );
-}
-ScrollTrigger.create({
-  trigger: "#page>canvas",
-  pin: true,
-  // markers:true,
-  scroller: `#main`,
-  start: `top top`,
-  end: `600% top`,
-});
-
-
-
-gsap.to("#page1",{
-  scrollTrigger:{
-    trigger:`#page1`,
-    start:`top top`,
-    end:`bottom top`,
-    pin:true,
-    scroller:`#main`
-  }
-})
-gsap.to("#page2",{
-  scrollTrigger:{
-    trigger:`#page2`,
-    start:`top top`,
-    end:`bottom top`,
-    pin:true,
-    scroller:`#main`
-  }
-})
-gsap.to("#page3",{
-  scrollTrigger:{
-    trigger:`#page3`,
-    start:`top top`,
-    end:`bottom top`,
-    pin:true,
-    scroller:`#main`
-  }
-})
+canvas();
