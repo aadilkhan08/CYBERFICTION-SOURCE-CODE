@@ -64,7 +64,7 @@ window.addEventListener("resize", function () {
 // Function to generate file path for image sequence
 function files(index) {
     let fileNumber = String(index + 1).padStart(4, '0'); // This will ensure the number is always 4 digits
-    let filePath = `./assets/male${fileNumber}.png`;
+    let filePath = `./assets/male${fileNumber}.webp`;
     return filePath;
 }
 
